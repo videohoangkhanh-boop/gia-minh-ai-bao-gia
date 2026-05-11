@@ -197,15 +197,7 @@
       lastQuote = data;
     }
 
-    function fileToDataURL(file) {
-      return new Promise((resolve, reject) => {
-        if (!file) return resolve(null);
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
+   
 
     async function askAI() {
       if (!lastQuote) quote();
@@ -223,10 +215,10 @@
       try {
         
         const res = await fetch('/api/advice', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ quote: lastQuote })
-        });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ quote: lastQuote })
+});
 
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Có lỗi khi gọi AI');
