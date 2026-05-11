@@ -74,9 +74,7 @@
         <option value="laminated">Có cán màng</option>
       </select>
 
-      <label>Ảnh sản phẩm / ảnh mẫu tem khách gửi</label>
-      <input id="image" type="file" accept="image/*" />
-      <div class="hint">Không bắt buộc. Nếu có ảnh, AI sẽ tư vấn chất liệu, size và màu phù hợp hơn.</div>
+
 
       <label>Ghi chú thêm</label>
       <textarea id="memo" rows="3" placeholder="Ví dụ: tem tròn, dán ly trà sữa, cần gấp..."></textarea>
@@ -215,7 +213,7 @@
 
       const aiBtn = document.getElementById('aiBtn');
       const aiBox = document.getElementById('aiBox');
-      const imageFile = document.getElementById('image').files[0];
+     
 
       aiBtn.disabled = true;
       aiBtn.textContent = 'AI đang tư vấn...';
@@ -223,11 +221,11 @@
       aiBox.textContent = 'Đang tạo lời tư vấn...';
 
       try {
-        const imageDataUrl = await fileToDataURL(imageFile);
+        
         const res = await fetch('/api/advice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ quote: lastQuote, imageDataUrl })
+          body: JSON.stringify({ quote: lastQuote })
         });
 
         const data = await res.json();
