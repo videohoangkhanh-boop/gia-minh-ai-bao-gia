@@ -12,7 +12,7 @@ app.use(express.static("public"));
 
 app.post("/api/advice", async (req, res) => {
   try {
-    const { quote, imageDataUrl } = req.body || {};
+    const { quote } = req.body || {};
 
     if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({ error: "Chưa có OPENAI_API_KEY trong file .env" });
@@ -37,7 +37,7 @@ Luôn ưu tiên:
 
 Khi kết thúc tư vấn:
 "Anh/chị gửi mẫu qua Zalo/Facebook giúp em để em kiểm tra file và báo đúng giá thực tế nha 👍"
-`;
+
 Kinh nghiệm in:
 - Decal giấy/kraft: giá tốt, hợp sản phẩm khô, không cần chống nước nhiều.
 - Decal nhựa: kháng nước, hợp trà sữa, ly lạnh, chai/lọ, mỹ phẩm.
@@ -56,16 +56,12 @@ Thông tin khách nhập:
 - Ghi chú khách: ${quote.memo || "không có"}
 
 Hãy viết câu tư vấn bán hàng như nhân viên Gia Minh Sticker.
-Nếu có ảnh, hãy xem ảnh và đề xuất chất liệu, màu, bố cục hoặc size phù hợp.
+Hãy tư vấn chất liệu, màu dễ in, bố cục hoặc size phù hợp theo thông tin khách đã nhập.
 `;
 
-    const content = [
-      { type: "input_text", text: quoteText }
-    ];
+  const content = quoteText;
 
-    if (imageDataUrl) {
-      content.push({ type: "input_image", image_url: imageDataUrl });
-    }
+   
 
     const response = await client.responses.create({
       model: "gpt-4.1-mini",
