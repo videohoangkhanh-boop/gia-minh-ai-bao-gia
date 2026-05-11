@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo giá tem nhãn AI - Gia Minh Sticker</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; color: #222; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 20px; }
+    .card { background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 8px 28px rgba(0,0,0,.08); }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .sub { margin: 0 0 22px; color: #666; line-height: 1.45; }
+    label { display: block; font-weight: 700; margin: 14px 0 6px; }
+    input, select, textarea { width: 100%; border: 1px solid #ddd; border-radius: 12px; padding: 13px 14px; font-size: 16px; outline: none; background: #fff; }
+    input:focus, select:focus, textarea:focus { border-color: #111; }
+    button { width: 100%; border: 0; border-radius: 14px; padding: 15px 16px; font-size: 17px; font-weight: 800; cursor: pointer; margin-top: 18px; background: #111; color: #fff; }
+    button.secondary { background: #0b7a24; }
+    button:disabled { opacity: .55; cursor: not-allowed; }
+    .result { margin-top: 20px; padding: 18px; border-radius: 16px; background: #f2f7f2; border: 1px solid #cfe8cf; display: none; }
+    .price { font-size: 30px; font-weight: 900; margin: 8px 0; color: #0b7a24; }
+    .note { color: #555; line-height: 1.55; margin-top: 10px; }
+    .cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .cta a { text-align: center; text-decoration: none; padding: 13px; border-radius: 12px; font-weight: 800; }
+    .zalo { background: #0068ff; color: #fff; }
+    .fb { background: #1877f2; color: #fff; }
+    .small { font-size: 13px; color: #777; margin-top: 14px; line-height: 1.45; }
+    .ai-box { margin-top: 16px; padding: 16px; border-radius: 16px; background: #fff8e8; border: 1px solid #f2d89b; display: none; line-height: 1.55; white-space: pre-wrap; }
+    .hint { font-size: 13px; color: #777; margin-top: 6px; }
+    @media (max-width: 620px) { .cta { grid-template-columns: 1fr; } h1 { font-size: 24px; } .card { padding: 18px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Gia Minh Sticker</h1>
+      <p class="sub">Công cụ báo giá tem nhãn tham khảo. Khách nhập thông tin để nhận giá nhanh, sau đó có thể dùng AI tư vấn thêm như nhân viên shop.</p>
+
+      <label>Sản phẩm cần dán</label>
+      <select id="product">
+        <option>Trà sữa / ly lạnh</option>
+        <option>Mỹ phẩm</option>
+        <option>Thực phẩm</option>
+        <option>Hũ / chai / lọ</option>
+        <option>Khác</option>
+      </select>
+
+      <label>Kích thước tem</label>
+      <select id="size">
+        <option value="3x3">3x3cm</option>
+        <option value="4x4">4x4cm</option>
+        <option value="5x5">5x5cm</option>
+        <option value="6x6">6x6cm</option>
+        <option value="3x6">3x6cm</option>
+      </select>
+
+      <label>Số lượng tem</label>
+      <select id="qty">
+        <option value="500">500 tem</option>
+        <option value="1000">1000 tem</option>
+        <option value="2000">2000 tem</option>
+      </select>
+
+      <label>Chất liệu</label>
+      <select id="material">
+        <option value="paper">Decal giấy trắng / giấy kraft</option>
+        <option value="plastic">Decal nhựa kháng nước</option>
+        <option value="clear">Decal trong suốt cán màng - kháng nước</option>
+      </select>
+
+      <label>Gia công</label>
+      <select id="finish">
+        <option value="none">Không cán màng</option>
+        <option value="laminated">Có cán màng</option>
+      </select>
+
+      <label>Ảnh sản phẩm / ảnh mẫu tem khách gửi</label>
+      <input id="image" type="file" accept="image/*" />
+      <div class="hint">Không bắt buộc. Nếu có ảnh, AI sẽ tư vấn chất liệu, size và màu phù hợp hơn.</div>
+
+      <label>Ghi chú thêm</label>
+      <textarea id="memo" rows="3" placeholder="Ví dụ: tem tròn, dán ly trà sữa, cần gấp..."></textarea>
+
+      <button onclick="quote()">Báo giá tham khảo</button>
+
+      <div id="result" class="result">
+        <div>Giá tham khảo:</div>
+        <div id="price" class="price"></div>
+        <div id="advice" class="note"></div>
+
+        <button id="aiBtn" class="secondary" onclick="askAI()">AI tư vấn như nhân viên</button>
+        <div id="aiBox" class="ai-box"></div>
+
+        <div class="cta">
+          <a id="zaloLink" class="zalo" target="_blank">Gửi Zalo</a>
+          <a id="fbLink" class="fb" target="_blank">Nhắn Facebook</a>
+        </div>
+        <div class="small">Giá chỉ mang tính tham khảo. Giá thực tế có thể thay đổi theo file in, độ phủ màu, cán màng, bế tem và tiến độ cần lấy.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const priceTable = {
+      paper: {
+        "3x3": { none: {500:120000,1000:156000,2000:228000}, laminated:{500:131000,1000:175000,2000:263000} },
+        "4x4": { none: {500:156000,1000:228000,2000:390000}, laminated:{500:175000,1000:264000,2000:462000} },
+        "5x5": { none: {500:185000,1000:300000,2000:560000}, laminated:{500:211000,1000:353000,2000:662000} },
+        "6x6": { none: {500:228000,1000:390000,2000:742000}, laminated:{500:263000,1000:462000,2000:881000} },
+        "3x6": { none: {500:156000,1000:228000,2000:390000}, laminated:{500:175000,1000:264000,2000:462000} }
+      },
+      plastic: {
+        "3x3": { none: {500:159000,1000:208000,2000:303000}, laminated:{500:175000,1000:233000,2000:350000} },
+        "4x4": { none: {500:208000,1000:303000,2000:520000}, laminated:{500:233000,1000:350000,2000:615000} },
+        "5x5": { none: {500:246000,1000:400000,2000:745000}, laminated:{500:280000,1000:470000,2000:881000} },
+        "6x6": { none: {500:303000,1000:520000,2000:988000}, laminated:{500:350000,1000:615000,2000:1172000} },
+        "3x6": { none: {500:208000,1000:303000,2000:520000}, laminated:{500:233000,1000:350000,2000:615000} }
+      },
+      clear: {
+        "3x3": { laminated:{500:177000,1000:237000,2000:356000} },
+        "4x4": { laminated:{500:237000,1000:356000,2000:624000} },
+        "5x5": { laminated:{500:285000,1000:477000,2000:895000} },
+        "6x6": { laminated:{500:356000,1000:624000,2000:1189000} },
+        "3x6": { laminated:{500:237000,1000:356000,2000:624000} }
+      }
+    };
+
+    let lastQuote = null;
+
+    function money(v) { return v.toLocaleString('vi-VN') + 'đ'; }
+
+    function updateFinishOptions() {
+      const material = document.getElementById('material').value;
+      const finish = document.getElementById('finish');
+      if (material === 'clear') {
+        finish.value = 'laminated';
+        finish.disabled = true;
+      } else {
+        finish.disabled = false;
+      }
+    }
+
+    document.getElementById('material').addEventListener('change', updateFinishOptions);
+    updateFinishOptions();
+
+    function getFormDataForQuote() {
+      const size = document.getElementById('size').value;
+      const qty = document.getElementById('qty').value;
+      const material = document.getElementById('material').value;
+      let finish = document.getElementById('finish').value;
+      const product = document.getElementById('product').value;
+      const memo = document.getElementById('memo').value.trim();
+
+      if (material === 'clear') finish = 'laminated';
+
+      const price = priceTable?.[material]?.[size]?.[finish]?.[qty];
+      if (!price) return null;
+
+      const materialText = {
+        paper: 'decal giấy trắng / giấy kraft',
+        plastic: 'decal nhựa kháng nước',
+        clear: 'decal trong suốt cán màng - kháng nước'
+      }[material];
+
+      const finishText = finish === 'laminated' ? 'có cán màng' : 'không cán màng';
+
+      return { size, qty, material, materialText, finish, finishText, product, memo, price };
+    }
+
+    function quote() {
+      const data = getFormDataForQuote();
+      if (!data) {
+        alert('Bảng giá chưa có lựa chọn này. Anh/chị nhắn shop để báo giá riêng nha.');
+        return;
+      }
+
+      let advice = `Dạ tem ${data.size}cm, số lượng ${data.qty} tem, chất liệu ${data.materialText}, ${data.finishText}: giá tham khảo ${money(data.price)} nha 😊`;
+
+      if (data.material === 'plastic') {
+        advice += `<br><br>Decal nhựa kháng nước phù hợp dán ly lạnh, chai lọ, mỹ phẩm hoặc sản phẩm cần chống nước.`;
+      } else if (data.material === 'clear') {
+        advice += `<br><br>Decal trong suốt hợp sản phẩm cần nhìn sạch, hiện đại, có nền chai/lọ đẹp sẵn.`;
+      } else {
+        advice += `<br><br>Decal giấy/kraft phù hợp nếu anh/chị muốn giá tốt, dùng cho sản phẩm khô hoặc không cần chống nước nhiều.`;
+      }
+
+      advice += `<br><br>Anh/chị gửi mẫu/logo giúp em để báo sát hơn và tư vấn màu dễ in đẹp nha 👍`;
+
+      document.getElementById('price').innerHTML = money(data.price);
+      document.getElementById('advice').innerHTML = advice;
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('aiBox').style.display = 'none';
+      document.getElementById('aiBox').textContent = '';
+
+      const msg = `Dạ em muốn báo giá tem ${data.size}cm, ${data.qty} tem, ${data.materialText}, ${data.finishText}. Sản phẩm: ${data.product}. ${data.memo ? 'Ghi chú: ' + data.memo : ''}`;
+      document.getElementById('zaloLink').href = 'https://zalo.me/0913136972?text=' + encodeURIComponent(msg);
+      document.getElementById('fbLink').href = 'https://www.facebook.com/ingiaminh.sticker';
+
+      lastQuote = data;
+    }
+
+    function fileToDataURL(file) {
+      return new Promise((resolve, reject) => {
+        if (!file) return resolve(null);
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function askAI() {
+      if (!lastQuote) quote();
+      if (!lastQuote) return;
+
+      const aiBtn = document.getElementById('aiBtn');
+      const aiBox = document.getElementById('aiBox');
+      const imageFile = document.getElementById('image').files[0];
+
+      aiBtn.disabled = true;
+      aiBtn.textContent = 'AI đang tư vấn...';
+      aiBox.style.display = 'block';
+      aiBox.textContent = 'Đang tạo lời tư vấn...';
+
+      try {
+        const imageDataUrl = await fileToDataURL(imageFile);
+        const res = await fetch('/api/advice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ quote: lastQuote, imageDataUrl })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Có lỗi khi gọi AI');
+
+        aiBox.textContent = data.advice;
+      } catch (err) {
+        aiBox.textContent = 'AI chưa phản hồi được. Kiểm tra server/API key rồi thử lại nha.\n\nLỗi: ' + err.message;
+      } finally {
+        aiBtn.disabled = false;
+        aiBtn.textContent = 'AI tư vấn như nhân viên';
+      }
+    }
+  </script>
+</body>
+</html>
