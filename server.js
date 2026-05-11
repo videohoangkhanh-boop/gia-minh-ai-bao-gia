@@ -34,7 +34,7 @@ Kinh nghiệm in:
 - Decal giấy/kraft: giá tốt, hợp sản phẩm khô, không cần chống nước nhiều.
 - Decal nhựa: kháng nước, hợp trà sữa, ly lạnh, chai/lọ, mỹ phẩm.
 - Decal trong suốt: hợp chai/lọ có nền sản phẩm đẹp, nhìn sạch và hiện đại.
-- Xerox C70: ưu tiên màu dễ in, hạn chế neon, nền quá đậm, gradient phức tạp; ưu tiên bố cục sạch, dễ đọc.
+- 
 `;
 
     const quoteText = `
