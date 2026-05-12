@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Gia Minh Sticker - Báo giá tem nhanh</title>
 
   <style>
@@ -203,6 +204,10 @@
         <option value="5x5">5x5cm</option>
         <option value="6x6">6x6cm</option>
         <option value="3x6">3x6cm</option>
+        <option value="7x7">7x7cm</option>
+        <option value="8x8">8x8cm</option>
+        <option value="9x9">9x9cm</option>
+        <option value="10x10">10x10cm</option>
       </select>
 
       <label>Số lượng tem</label>
@@ -221,7 +226,7 @@
 
       <label>Gia công</label>
       <select id="finish">
-        <option value="none">Không cần màng</option>
+        <option value="none">Không cán màng</option>
         <option value="laminated">Có cán màng</option>
       </select>
 
@@ -252,7 +257,7 @@
   </div>
 
   <script>
-    const ZALO_PHONE = "0913136972";
+    const ZALO_PHONE = "0937650121";
     const FACEBOOK_LINK = "https://www.facebook.com/ingiaminh.sticker";
 
     const priceTable = {
@@ -276,6 +281,22 @@
         "3x6": {
           none: { 500: 156000, 1000: 228000, 2000: 390000 },
           laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
+        },
+        "7x7": {
+          none: { 500: 301000, 1000: 560000, 2000: 1057000 },
+          laminated: { 500: 353000, 1000: 663000, 2000: 1258000 }
+        },
+        "8x8": {
+          none: { 500: 443000, 1000: 871000, 2000: 1687000 },
+          laminated: { 500: 524000, 1000: 1033000, 2000: 2006000 }
+        },
+        "9x9": {
+          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
+          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
+        },
+        "10x10": {
+          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
+          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
         }
       },
 
@@ -299,6 +320,22 @@
         "3x6": {
           none: { 500: 208000, 1000: 303000, 2000: 520000 },
           laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
+        },
+        "7x7": {
+          none: { 500: 400000, 1000: 745000, 2000: 1406000 },
+          laminated: { 500: 470000, 1000: 881000, 2000: 1673000 }
+        },
+        "8x8": {
+          none: { 500: 589000, 1000: 1158000, 2000: 2243000 },
+          laminated: { 500: 697000, 1000: 1374000, 2000: 2668000 }
+        },
+        "9x9": {
+          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
+          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
+        },
+        "10x10": {
+          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
+          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
         }
       },
 
@@ -322,6 +359,22 @@
         "3x6": {
           none: { 500: 233000, 1000: 350000, 2000: 615000 },
           laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
+        },
+        "7x7": {
+          none: { 500: 477000, 1000: 894000, 2000: 1698000 },
+          laminated: { 500: 477000, 1000: 894000, 2000: 1698000 }
+        },
+        "8x8": {
+          none: { 500: 707000, 1000: 1394000, 2000: 2709000 },
+          laminated: { 500: 707000, 1000: 1394000, 2000: 2709000 }
+        },
+        "9x9": {
+          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
+          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
+        },
+        "10x10": {
+          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
+          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
         }
       }
     };
@@ -341,8 +394,13 @@
       const size = document.getElementById("size").value;
       const qty = document.getElementById("qty").value;
       const material = document.getElementById("material").value;
-      const finish = document.getElementById("finish").value;
+      let finish = document.getElementById("finish").value;
       const memo = document.getElementById("memo").value.trim();
+
+      if (material === "clear") {
+        finish = "laminated";
+        document.getElementById("finish").value = "laminated";
+      }
 
       const price = priceTable?.[material]?.[size]?.[finish]?.[qty];
 
@@ -365,7 +423,7 @@
       }
 
       if (material === "clear") {
-        advice += `<br><br>Decal trong suốt nhìn sạch và hiện đại, hợp chai/lọ có nền sản phẩm đẹp.`;
+        advice += `<br><br>Decal trong suốt bắt buộc cán màng, nhìn sạch và hiện đại, hợp chai/lọ có nền sản phẩm đẹp.`;
       }
 
       advice += `<br><br>Anh/chị gửi mẫu/logo giúp em để báo sát hơn và tư vấn màu dễ in đẹp nha 👍`;
