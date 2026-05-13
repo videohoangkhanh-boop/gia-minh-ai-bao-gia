@@ -79,28 +79,33 @@
       line-height: 1.45;
     }
 
-    .upload-mini {
+    .send-zalo-mini {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       background: #f3f4f6;
       border: 1px dashed #cbd5e1;
       padding: 8px 10px;
       border-radius: 10px;
+      font-size: 13px;
       flex-shrink: 0;
     }
 
-    .upload-mini label {
-      margin: 0;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
+    .send-zalo-mini span {
+      font-weight: 600;
+      color: #374151;
       white-space: nowrap;
     }
 
-    .upload-mini input {
-      width: 108px;
+    .send-zalo-mini a {
+      text-decoration: none;
+      background: white;
+      border: 1px solid #d1d5db;
+      color: #111827;
+      padding: 4px 10px;
+      border-radius: 8px;
       font-size: 12px;
+      font-weight: bold;
     }
 
     label {
@@ -222,6 +227,7 @@
     }
 
     @media (max-width: 480px) {
+
       .wrap {
         padding: 12px;
       }
@@ -250,41 +256,51 @@
         gap: 10px;
       }
 
-      .upload-mini {
+      .send-zalo-mini {
         width: 100%;
         justify-content: space-between;
       }
 
-      .upload-mini input {
-        width: 150px;
-      }
     }
   </style>
 </head>
 
 <body>
+
   <div class="wrap">
     <div class="card">
 
       <div class="topbar">
+
         <img src="logo.png" alt="Gia Minh Sticker" class="logo" />
 
         <div class="brand-area">
           <h1>Gia Minh Sticker</h1>
-          <p class="desc">Báo giá tem nhanh • AI tư vấn như nhân viên shop</p>
+          <p class="desc">
+            Báo giá tem nhanh • AI tư vấn như nhân viên shop
+          </p>
         </div>
+
       </div>
 
       <div class="top-actions">
-        <div class="small">✔ Có nhận số lượng ít • ✔ Ship toàn quốc</div>
 
-        <div class="upload-mini">
-          <label for="fileUpload">📎 Upload mẫu cũ</label>
-          <input type="file" id="fileUpload" accept="image/*,.pdf,.ai,.cdr,.psd" />
+        <div class="small">
+          ✔ Có nhận số lượng ít • ✔ Ship toàn quốc
         </div>
+
+        <div class="send-zalo-mini">
+          <span>📎 Chuyển file qua Zalo</span>
+
+          <a href="https://zalo.me/0937650121" target="_blank">
+            Mở Zalo
+          </a>
+        </div>
+
       </div>
 
       <label>Kích thước tem</label>
+
       <select id="size">
         <option value="3x3">3x3cm</option>
         <option value="4x4">4x4cm</option>
@@ -298,6 +314,7 @@
       </select>
 
       <label>Số lượng tem</label>
+
       <select id="qty">
         <option value="500">500 tem</option>
         <option value="1000">1000 tem</option>
@@ -305,6 +322,7 @@
       </select>
 
       <label>Chất liệu</label>
+
       <select id="material">
         <option value="paper">Decal giấy trắng / giấy kraft</option>
         <option value="plastic">Decal nhựa kháng nước</option>
@@ -312,78 +330,79 @@
       </select>
 
       <label>Gia công</label>
+
       <select id="finish">
         <option value="none">Không cán màng</option>
         <option value="laminated">Có cán màng</option>
       </select>
 
       <label>Ghi chú thêm</label>
+
       <textarea id="memo" placeholder="Ví dụ: tem tròn, dán ly trà sữa, cần gấp..."></textarea>
 
-      <button onclick="quote()">Báo giá tham khảo</button>
+      <button onclick="quote()">
+        Báo giá tham khảo
+      </button>
 
       <div id="result" class="result">
-        <div class="result-title">Giá tham khảo:</div>
+
+        <div class="result-title">
+          Giá tham khảo:
+        </div>
+
         <div id="price" class="price"></div>
+
         <div id="advice" class="note"></div>
 
-        <button id="aiBtn" class="secondary" onclick="askAI()">AI tư vấn như nhân viên</button>
+        <button id="aiBtn" class="secondary" onclick="askAI()">
+          AI tư vấn như nhân viên
+        </button>
+
         <div id="aiBox" class="ai-box"></div>
 
         <div class="cta">
-          <a id="zaloLink" class="zalo" target="_blank">Gửi Zalo</a>
-          <a id="sendFile" class="zalo" target="_blank">📁 Gửi file qua Zalo</a>
-          <a id="fbLink" class="fb" target="_blank">Nhắn Facebook</a>
+
+          <a id="zaloLink" class="zalo" target="_blank">
+            Gửi Zalo
+          </a>
+
+          <a id="fbLink" class="fb" target="_blank">
+            Nhắn Facebook
+          </a>
+
         </div>
 
         <div class="disclaimer">
-          Giá chỉ mang tính tham khảo. Giá thực tế có thể thay đổi theo file in, độ phủ màu, cán màng, bế tem và tiến độ cần lấy.
+          Giá chỉ mang tính tham khảo.
+          Giá thực tế có thể thay đổi theo file in,
+          độ phủ màu, cán màng, bế tem và tiến độ cần lấy.
         </div>
+
       </div>
     </div>
   </div>
 
   <script>
+
     const ZALO_PHONE = "0937650121";
     const FACEBOOK_LINK = "https://www.facebook.com/ingiaminh.sticker";
 
     const priceTable = {
+
       paper: {
         "3x3": {
           none: { 500: 120000, 1000: 156000, 2000: 228000 },
           laminated: { 500: 131000, 1000: 175000, 2000: 263000 }
         },
+
         "4x4": {
           none: { 500: 156000, 1000: 228000, 2000: 390000 },
           laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
         },
+
         "5x5": {
           none: { 500: 185000, 1000: 300000, 2000: 560000 },
           laminated: { 500: 211000, 1000: 353000, 2000: 662000 }
-        },
-        "6x6": {
-          none: { 500: 228000, 1000: 390000, 2000: 742000 },
-          laminated: { 500: 263000, 1000: 462000, 2000: 881000 }
-        },
-        "3x6": {
-          none: { 500: 156000, 1000: 228000, 2000: 390000 },
-          laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
-        },
-        "7x7": {
-          none: { 500: 301000, 1000: 560000, 2000: 1057000 },
-          laminated: { 500: 353000, 1000: 663000, 2000: 1258000 }
-        },
-        "8x8": {
-          none: { 500: 443000, 1000: 871000, 2000: 1687000 },
-          laminated: { 500: 524000, 1000: 1033000, 2000: 2006000 }
-        },
-        "9x9": {
-          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
-          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
-        },
-        "10x10": {
-          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
-          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
         }
       },
 
@@ -392,37 +411,15 @@
           none: { 500: 159000, 1000: 208000, 2000: 303000 },
           laminated: { 500: 175000, 1000: 233000, 2000: 350000 }
         },
+
         "4x4": {
           none: { 500: 208000, 1000: 303000, 2000: 520000 },
           laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
         },
+
         "5x5": {
           none: { 500: 246000, 1000: 400000, 2000: 745000 },
           laminated: { 500: 280000, 1000: 470000, 2000: 881000 }
-        },
-        "6x6": {
-          none: { 500: 303000, 1000: 520000, 2000: 990000 },
-          laminated: { 500: 350000, 1000: 615000, 2000: 1175000 }
-        },
-        "3x6": {
-          none: { 500: 208000, 1000: 303000, 2000: 520000 },
-          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
-        },
-        "7x7": {
-          none: { 500: 400000, 1000: 745000, 2000: 1406000 },
-          laminated: { 500: 470000, 1000: 881000, 2000: 1673000 }
-        },
-        "8x8": {
-          none: { 500: 589000, 1000: 1158000, 2000: 2243000 },
-          laminated: { 500: 697000, 1000: 1374000, 2000: 2668000 }
-        },
-        "9x9": {
-          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
-          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
-        },
-        "10x10": {
-          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
-          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
         }
       },
 
@@ -431,39 +428,18 @@
           none: { 500: 175000, 1000: 233000, 2000: 350000 },
           laminated: { 500: 175000, 1000: 233000, 2000: 350000 }
         },
+
         "4x4": {
           none: { 500: 233000, 1000: 350000, 2000: 615000 },
           laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
         },
+
         "5x5": {
           none: { 500: 280000, 1000: 470000, 2000: 881000 },
           laminated: { 500: 280000, 1000: 470000, 2000: 881000 }
-        },
-        "6x6": {
-          none: { 500: 350000, 1000: 615000, 2000: 1175000 },
-          laminated: { 500: 350000, 1000: 615000, 2000: 1175000 }
-        },
-        "3x6": {
-          none: { 500: 233000, 1000: 350000, 2000: 615000 },
-          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
-        },
-        "7x7": {
-          none: { 500: 477000, 1000: 894000, 2000: 1698000 },
-          laminated: { 500: 477000, 1000: 894000, 2000: 1698000 }
-        },
-        "8x8": {
-          none: { 500: 707000, 1000: 1394000, 2000: 2709000 },
-          laminated: { 500: 707000, 1000: 1394000, 2000: 2709000 }
-        },
-        "9x9": {
-          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
-          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
-        },
-        "10x10": {
-          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
-          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
         }
       }
+
     };
 
     let lastQuote = null;
@@ -478,10 +454,12 @@
     }
 
     function quote() {
+
       const size = document.getElementById("size").value;
       const qty = document.getElementById("qty").value;
       const material = document.getElementById("material").value;
       let finish = document.getElementById("finish").value;
+
       const memo = document.getElementById("memo").value.trim();
 
       if (material === "clear") {
@@ -499,26 +477,31 @@
       const materialText = getText("material");
       const finishText = getText("finish");
 
-      let advice = `Dạ tem ${size}cm, số lượng ${qty} tem, chất liệu ${materialText}, ${finishText.toLowerCase()}: giá tham khảo ${money(price)} nha 😊`;
+      let advice =
+        `Dạ tem ${size}cm, số lượng ${qty} tem, chất liệu ${materialText}, ${finishText.toLowerCase()}: giá tham khảo ${money(price)} nha 😊`;
 
       if (material === "paper") {
-        advice += `<br><br>Decal giấy/kraft phù hợp nếu anh/chị muốn giá tốt, dùng cho sản phẩm khô hoặc không cần chống nước nhiều.`;
+        advice += `<br><br>Decal giấy phù hợp nếu muốn tiết kiệm chi phí.`;
       }
 
       if (material === "plastic") {
-        advice += `<br><br>Decal nhựa phù hợp hơn nếu tem dán ly lạnh, chai/lọ hoặc cần kháng nước tốt.`;
+        advice += `<br><br>Decal nhựa phù hợp hơn nếu tem dán ly lạnh hoặc cần chống nước.`;
       }
 
       if (material === "clear") {
-        advice += `<br><br>Decal trong suốt bắt buộc cán màng, nhìn sạch và hiện đại, hợp chai/lọ có nền sản phẩm đẹp.`;
+        advice += `<br><br>Decal trong suốt phù hợp chai/lọ cần nhìn thấy nền sản phẩm.`;
       }
 
-      advice += `<br><br>Anh/chị gửi mẫu/logo giúp em để báo sát hơn và tư vấn màu dễ in đẹp nha 👍`;
+      advice += `<br><br>Anh/chị gửi mẫu/logo giúp em để báo sát hơn nha 👍`;
 
       document.getElementById("price").innerHTML = money(price);
+
       document.getElementById("advice").innerHTML = advice;
+
       document.getElementById("result").style.display = "block";
+
       document.getElementById("aiBox").style.display = "none";
+
       document.getElementById("aiBox").textContent = "";
 
       lastQuote = {
@@ -539,29 +522,41 @@
       document.getElementById("zaloLink").href =
         `https://zalo.me/${ZALO_PHONE}?text=` + encodeURIComponent(msg);
 
-      document.getElementById("sendFile").href =
-        `https://zalo.me/${ZALO_PHONE}`;
+      document.getElementById("fbLink").href =
+        FACEBOOK_LINK;
 
-      document.getElementById("fbLink").href = FACEBOOK_LINK;
     }
 
     async function askAI() {
+
       if (!lastQuote) quote();
+
       if (!lastQuote) return;
 
       const aiBtn = document.getElementById("aiBtn");
+
       const aiBox = document.getElementById("aiBox");
 
       aiBtn.disabled = true;
+
       aiBtn.textContent = "AI đang tư vấn...";
+
       aiBox.style.display = "block";
+
       aiBox.textContent = "Đang tạo lời tư vấn...";
 
       try {
+
         const res = await fetch("/api/advice", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ quote: lastQuote })
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            quote: lastQuote
+          })
         });
 
         const data = await res.json();
@@ -571,15 +566,23 @@
         }
 
         aiBox.textContent = data.advice;
+
       } catch (err) {
+
         aiBox.textContent =
-          "AI chưa phản hồi được. Anh/chị bấm Zalo/Facebook gửi mẫu giúp em để bên em tư vấn trực tiếp nha 👍\n\nLỗi: " +
-          err.message;
+          "AI chưa phản hồi được. Anh/chị gửi Zalo giúp em để bên em tư vấn trực tiếp nha 👍";
+
       } finally {
+
         aiBtn.disabled = false;
+
         aiBtn.textContent = "AI tư vấn như nhân viên";
+
       }
+
     }
+
   </script>
+
 </body>
 </html>
