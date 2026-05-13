@@ -5,494 +5,345 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Gia Minh Sticker - Báo giá tem nhanh</title>
+  <meta name="description" content="Upload mẫu tem cũ, AI tư vấn decal giấy / nhựa, báo giá nhanh." />
+
+  <!-- Preview Facebook / Zalo -->
+  <meta property="og:title" content="Gia Minh Sticker - Báo giá tem nhanh" />
+  <meta property="og:description" content="Upload mẫu tem cũ - AI tư vấn decal phù hợp - Báo giá nhanh" />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
 
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #eef7f0;
-      color: #1f2937;
+      background: #f4f4f4;
+      color: #222;
+      padding: 18px;
     }
 
-    .wrap {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 16px;
+    .container {
+      max-width: 600px;
+      margin: auto;
     }
 
     .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      background: white;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+      margin: auto;
+      border-radius: 50%;
+      margin-bottom: 18px;
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      color: #111827;
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 12px;
     }
 
-    .desc {
-      margin: 0 0 8px;
-      color: #4b5563;
-      font-size: 15px;
-      line-height: 1.5;
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 26px;
     }
 
-    .small {
-      font-size: 13px;
-      color: #047857;
-      margin-bottom: 18px;
-      font-weight: 600;
+    .upload-box {
+      border: 2px dashed #ccc;
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+      background: #fafafa;
+      margin-bottom: 22px;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 14px 0 6px;
-      font-size: 16px;
+    .upload-box p {
+      margin-bottom: 14px;
+      font-size: 17px;
+      line-height: 1.6;
     }
 
-    select,
-    textarea {
+    input[type="file"] {
       width: 100%;
-      padding: 13px 14px;
-      border: 1px solid #d1d5db;
+      padding: 12px;
       border-radius: 12px;
+      background: white;
+      border: 1px solid #ddd;
       font-size: 16px;
-      background: #fff;
-      color: #111827;
     }
 
-    textarea {
-      min-height: 76px;
-      resize: vertical;
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid #ddd;
+      margin-bottom: 16px;
+      font-size: 17px;
     }
 
     button {
       width: 100%;
-      padding: 16px;
       border: none;
-      border-radius: 14px;
-      background: #0f8b2d;
-      color: white;
-      font-size: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      font-size: 20px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 16px;
+      transition: 0.2s;
+      margin-bottom: 14px;
     }
 
-    button.secondary {
-      background: #087f2b;
-      margin-top: 16px;
+    .main-btn {
+      background: #111;
+      color: white;
     }
 
-    button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+    .main-btn:hover {
+      opacity: 0.9;
+    }
+
+    .zalo-btn {
+      background: #0068ff;
+      color: white;
+    }
+
+    .messenger-btn {
+      background: #0084ff;
+      color: white;
     }
 
     .result {
-      display: none;
+      background: #fff8e7;
+      border-radius: 18px;
+      padding: 18px;
       margin-top: 18px;
-      background: #f8fff9;
-      border: 1px solid #b7e4c7;
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .result-title {
-      color: #374151;
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
-
-    .price {
-      font-size: 34px;
-      font-weight: bold;
-      color: #087f2b;
-      margin-bottom: 10px;
-    }
-
-    .note {
-      font-size: 16px;
-      line-height: 1.55;
-      color: #374151;
-    }
-
-    .ai-box {
+      line-height: 1.8;
+      font-size: 17px;
       display: none;
-      margin-top: 16px;
-      padding: 16px;
-      background: #fff8e8;
-      border: 1px solid #f3cf80;
-      border-radius: 14px;
-      line-height: 1.6;
-      white-space: pre-line;
     }
 
-    .cta {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .cta a {
-      display: block;
+    .footer {
       text-align: center;
+      margin-top: 26px;
+      color: #777;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* Floating buttons */
+
+    .floating-buttons {
+      position: fixed;
+      right: 16px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .floating-buttons a {
       text-decoration: none;
-      padding: 14px;
-      border-radius: 12px;
       color: white;
-      font-weight: bold;
-      font-size: 16px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .zalo {
-      background: #0b84ff;
+    .zalo-float {
+      background: #0068ff;
     }
 
-    .fb {
-      background: #1877f2;
+    .messenger-float {
+      background: #0084ff;
     }
 
-    .disclaimer {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 12px;
-      line-height: 1.45;
-    }
-
-    @media (max-width: 480px) {
-      .wrap {
+    @media(max-width: 480px) {
+      body {
         padding: 12px;
       }
 
       .card {
         padding: 18px;
-        border-radius: 16px;
       }
 
       h1 {
-        font-size: 24px;
+        font-size: 28px;
       }
 
-      .price {
+      .subtitle {
+        font-size: 17px;
+      }
+
+      button {
+        font-size: 19px;
+        padding: 18px;
+      }
+
+      .floating-buttons a {
+        width: 68px;
+        height: 68px;
         font-size: 30px;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="wrap">
+
+  <div class="container">
     <div class="card">
+
+      <!-- LOGO -->
+      <img src="logo.png" alt="Gia Minh Sticker" class="logo" />
+
       <h1>Gia Minh Sticker</h1>
-      <p class="desc">Báo giá tem nhanh • AI tư vấn như nhân viên shop</p>
-      <div class="small">✔ Có nhận số lượng ít • ✔ Ship toàn quốc</div>
 
-      <label>Kích thước tem</label>
-      <select id="size">
-        <option value="3x3">3x3cm</option>
-        <option value="4x4">4x4cm</option>
-        <option value="5x5">5x5cm</option>
-        <option value="6x6">6x6cm</option>
-        <option value="3x6">3x6cm</option>
-        <option value="7x7">7x7cm</option>
-        <option value="8x8">8x8cm</option>
-        <option value="9x9">9x9cm</option>
-        <option value="10x10">10x10cm</option>
-      </select>
-
-      <label>Số lượng tem</label>
-      <select id="qty">
-        <option value="500">500 tem</option>
-        <option value="1000">1000 tem</option>
-        <option value="2000">2000 tem</option>
-      </select>
-
-      <label>Chất liệu</label>
-      <select id="material">
-        <option value="paper">Decal giấy trắng / giấy kraft</option>
-        <option value="plastic">Decal nhựa kháng nước</option>
-        <option value="clear">Decal trong suốt cán màng - kháng nước</option>
-      </select>
-
-      <label>Gia công</label>
-      <select id="finish">
-        <option value="none">Không cán màng</option>
-        <option value="laminated">Có cán màng</option>
-      </select>
-
-      <label>Ghi chú thêm</label>
-      <textarea id="memo" placeholder="Ví dụ: tem tròn, dán ly trà sữa, cần gấp..."></textarea>
-
-      <button onclick="quote()">Báo giá tham khảo</button>
-
-      <div id="result" class="result">
-        <div class="result-title">Giá tham khảo:</div>
-        <div id="price" class="price"></div>
-        <div id="advice" class="note"></div>
-
-        <button id="aiBtn" class="secondary" onclick="askAI()">AI tư vấn như nhân viên</button>
-        <div id="aiBox" class="ai-box"></div>
-
-        <div class="cta">
-          <a id="zaloLink" class="zalo" target="_blank">Gửi Zalo</a>
-          <a id="sendFile" class="zalo" target="_blank">📁 Gửi file qua Zalo</a>
-          <a id="fbLink" class="fb" target="_blank">Nhắn Facebook</a>
-        </div>
-
-        <div class="disclaimer">
-          Giá chỉ mang tính tham khảo. Giá thực tế có thể thay đổi theo file in, độ phủ màu, cán màng, bế tem và tiến độ cần lấy.
-        </div>
+      <div class="subtitle">
+        🎨 Báo giá tem nhanh<br>
+        ✔ Upload mẫu tem cũ<br>
+        ✔ AI tư vấn decal giấy / nhựa<br>
+        ✔ Gợi ý kích thước phù hợp
       </div>
+
+      <!-- UPLOAD -->
+      <div class="upload-box">
+        <p>
+          📸 Upload hình tem cũ hoặc gửi file thiết kế<br>
+          Bên mình sẽ tư vấn chất liệu phù hợp 😄
+        </p>
+
+        <input type="file" id="imageUpload" accept="image/*" />
+      </div>
+
+      <!-- FORM -->
+      <input type="text" id="size" placeholder="Ví dụ: 5x5cm" />
+
+      <input type="text" id="quantity" placeholder="Ví dụ: 1000 tem" />
+
+      <textarea id="note" rows="4" placeholder="Mô tả thêm: tem trà sữa, chống nước, dán ly lạnh..."></textarea>
+
+      <!-- BUTTON -->
+      <button class="main-btn" onclick="analyzeSticker()">
+        🚀 AI TƯ VẤN TEM
+      </button>
+
+      <a href="https://zalo.me/0937650121" target="_blank">
+        <button class="zalo-btn">
+          💬 GỬI FILE QUA ZALO
+        </button>
+      </a>
+
+      <a href="https://m.me/" target="_blank">
+        <button class="messenger-btn">
+          📩 NHẮN MESSENGER
+        </button>
+      </a>
+
+      <!-- RESULT -->
+      <div class="result" id="resultBox"></div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        Gia Minh Sticker<br>
+        In tem nhãn decal theo yêu cầu 😄
+      </div>
+
     </div>
   </div>
 
+  <!-- FLOATING -->
+  <div class="floating-buttons">
+
+    <a href="https://zalo.me/0937650121" target="_blank" class="zalo-float">
+      Z
+    </a>
+
+    <a href="https://m.me/" target="_blank" class="messenger-float">
+      M
+    </a>
+
+  </div>
+
   <script>
-    const ZALO_PHONE = "0937650121";
-    const FACEBOOK_LINK = "https://www.facebook.com/ingiaminh.sticker";
 
-    const priceTable = {
-      paper: {
-        "3x3": {
-          none: { 500: 120000, 1000: 156000, 2000: 228000 },
-          laminated: { 500: 131000, 1000: 175000, 2000: 263000 }
-        },
-        "4x4": {
-          none: { 500: 156000, 1000: 228000, 2000: 390000 },
-          laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
-        },
-        "5x5": {
-          none: { 500: 185000, 1000: 300000, 2000: 560000 },
-          laminated: { 500: 211000, 1000: 353000, 2000: 662000 }
-        },
-        "6x6": {
-          none: { 500: 228000, 1000: 390000, 2000: 742000 },
-          laminated: { 500: 263000, 1000: 462000, 2000: 881000 }
-        },
-        "3x6": {
-          none: { 500: 156000, 1000: 228000, 2000: 390000 },
-          laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
-        },
-        "7x7": {
-          none: { 500: 301000, 1000: 560000, 2000: 1057000 },
-          laminated: { 500: 353000, 1000: 663000, 2000: 1258000 }
-        },
-        "8x8": {
-          none: { 500: 443000, 1000: 871000, 2000: 1687000 },
-          laminated: { 500: 524000, 1000: 1033000, 2000: 2006000 }
-        },
-        "9x9": {
-          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
-          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
-        },
-        "10x10": {
-          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
-          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
-        }
-      },
+    function analyzeSticker() {
 
-      plastic: {
-        "3x3": {
-          none: { 500: 159000, 1000: 208000, 2000: 303000 },
-          laminated: { 500: 175000, 1000: 233000, 2000: 350000 }
-        },
-        "4x4": {
-          none: { 500: 208000, 1000: 303000, 2000: 520000 },
-          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
-        },
-        "5x5": {
-          none: { 500: 246000, 1000: 400000, 2000: 745000 },
-          laminated: { 500: 280000, 1000: 470000, 2000: 881000 }
-        },
-        "6x6": {
-          none: { 500: 303000, 1000: 520000, 2000: 990000 },
-          laminated: { 500: 350000, 1000: 615000, 2000: 1175000 }
-        },
-        "3x6": {
-          none: { 500: 208000, 1000: 303000, 2000: 520000 },
-          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
-        },
-        "7x7": {
-          none: { 500: 400000, 1000: 745000, 2000: 1406000 },
-          laminated: { 500: 470000, 1000: 881000, 2000: 1673000 }
-        },
-        "8x8": {
-          none: { 500: 589000, 1000: 1158000, 2000: 2243000 },
-          laminated: { 500: 697000, 1000: 1374000, 2000: 2668000 }
-        },
-        "9x9": {
-          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
-          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
-        },
-        "10x10": {
-          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
-          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
-        }
-      },
+      const size = document.getElementById('size').value;
+      const quantity = document.getElementById('quantity').value;
+      const note = document.getElementById('note').value;
 
-      clear: {
-        "3x3": {
-          none: { 500: 175000, 1000: 233000, 2000: 350000 },
-          laminated: { 500: 175000, 1000: 233000, 2000: 350000 }
-        },
-        "4x4": {
-          none: { 500: 233000, 1000: 350000, 2000: 615000 },
-          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
-        },
-        "5x5": {
-          none: { 500: 280000, 1000: 470000, 2000: 881000 },
-          laminated: { 500: 280000, 1000: 470000, 2000: 881000 }
-        },
-        "6x6": {
-          none: { 500: 350000, 1000: 615000, 2000: 1175000 },
-          laminated: { 500: 350000, 1000: 615000, 2000: 1175000 }
-        },
-        "3x6": {
-          none: { 500: 233000, 1000: 350000, 2000: 615000 },
-          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
-        },
-        "7x7": {
-          none: { 500: 477000, 1000: 894000, 2000: 1698000 },
-          laminated: { 500: 477000, 1000: 894000, 2000: 1698000 }
-        },
-        "8x8": {
-          none: { 500: 707000, 1000: 1394000, 2000: 2709000 },
-          laminated: { 500: 707000, 1000: 1394000, 2000: 2709000 }
-        },
-        "9x9": {
-          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
-          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
-        },
-        "10x10": {
-          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
-          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
-        }
-      }
-    };
+      let advice = `
+        <b>🎯 AI Gợi ý:</b><br><br>
+      `;
 
-    let lastQuote = null;
-
-    function money(value) {
-      return Number(value).toLocaleString("vi-VN") + "đ";
-    }
-
-    function getText(id) {
-      const el = document.getElementById(id);
-      return el.options[el.selectedIndex].text;
-    }
-
-    function quote() {
-      const size = document.getElementById("size").value;
-      const qty = document.getElementById("qty").value;
-      const material = document.getElementById("material").value;
-      let finish = document.getElementById("finish").value;
-      const memo = document.getElementById("memo").value.trim();
-
-      if (material === "clear") {
-        finish = "laminated";
-        document.getElementById("finish").value = "laminated";
+      if(note.toLowerCase().includes('ly lạnh') || note.toLowerCase().includes('chống nước')) {
+        advice += '✔ Nên dùng decal nhựa chống nước.<br>';
+        advice += '✔ Khuyên cán màng để bền hơn.<br><br>';
+      } else {
+        advice += '✔ Có thể dùng decal giấy để tiết kiệm chi phí.<br><br>';
       }
 
-      const price = priceTable?.[material]?.[size]?.[finish]?.[qty];
-
-      if (!price) {
-        alert("Chưa có giá cho lựa chọn này.");
-        return;
+      if(size !== '') {
+        advice += `✔ Kích thước bạn nhập: <b>${size}</b><br>`;
+      } else {
+        advice += '✔ Tem trà sữa phổ biến: 5x5cm hoặc 4x6cm.<br>';
       }
 
-      const materialText = getText("material");
-      const finishText = getText("finish");
-
-      let advice = `Dạ tem ${size}cm, số lượng ${qty} tem, chất liệu ${materialText}, ${finishText.toLowerCase()}: giá tham khảo ${money(price)} nha 😊`;
-
-      if (material === "paper") {
-        advice += `<br><br>Decal giấy/kraft phù hợp nếu anh/chị muốn giá tốt, dùng cho sản phẩm khô hoặc không cần chống nước nhiều.`;
+      if(quantity !== '') {
+        advice += `✔ Số lượng: <b>${quantity}</b><br>`;
       }
 
-      if (material === "plastic") {
-        advice += `<br><br>Decal nhựa phù hợp hơn nếu tem dán ly lạnh, chai/lọ hoặc cần kháng nước tốt.`;
-      }
+      advice += `
+        <br>
+        💬 Muốn chốt nhanh?<br>
+        Gửi file qua Zalo bên mình 😄
+      `;
 
-      if (material === "clear") {
-        advice += `<br><br>Decal trong suốt bắt buộc cán màng, nhìn sạch và hiện đại, hợp chai/lọ có nền sản phẩm đẹp.`;
-      }
+      const resultBox = document.getElementById('resultBox');
+      resultBox.style.display = 'block';
+      resultBox.innerHTML = advice;
 
-      advice += `<br><br>Anh/chị gửi mẫu/logo giúp em để báo sát hơn và tư vấn màu dễ in đẹp nha 👍`;
-
-      document.getElementById("price").innerHTML = money(price);
-      document.getElementById("advice").innerHTML = advice;
-      document.getElementById("result").style.display = "block";
-      document.getElementById("aiBox").style.display = "none";
-      document.getElementById("aiBox").textContent = "";
-
-      lastQuote = {
+      // Save history local
+      const history = {
         size,
-        qty,
-        material,
-        materialText,
-        finish,
-        finishText,
-        memo,
-        price
+        quantity,
+        note,
+        time: new Date().toLocaleString()
       };
 
-      const msg =
-        `Dạ em muốn báo giá tem ${size}cm, ${qty} tem, ${materialText}, ${finishText}.` +
-        (memo ? ` Ghi chú: ${memo}` : "");
+      let oldHistory = JSON.parse(localStorage.getItem('giaMinhHistory')) || [];
 
-      document.getElementById("zaloLink").href =
-        `https://zalo.me/${ZALO_PHONE}?text=` + encodeURIComponent(msg);
+      oldHistory.push(history);
 
-      document.getElementById("sendFile").href =
-        `https://zalo.me/${ZALO_PHONE}`;
+      localStorage.setItem('giaMinhHistory', JSON.stringify(oldHistory));
 
-      document.getElementById("fbLink").href = FACEBOOK_LINK;
     }
 
-    async function askAI() {
-      if (!lastQuote) quote();
-      if (!lastQuote) return;
-
-      const aiBtn = document.getElementById("aiBtn");
-      const aiBox = document.getElementById("aiBox");
-
-      aiBtn.disabled = true;
-      aiBtn.textContent = "AI đang tư vấn...";
-      aiBox.style.display = "block";
-      aiBox.textContent = "Đang tạo lời tư vấn...";
-
-      try {
-        const res = await fetch("/api/advice", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ quote: lastQuote })
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "Có lỗi khi gọi AI");
-        }
-
-        aiBox.textContent = data.advice;
-      } catch (err) {
-        aiBox.textContent =
-          "AI chưa phản hồi được. Anh/chị bấm Zalo/Facebook gửi mẫu giúp em để bên em tư vấn trực tiếp nha 👍\n\nLỗi: " +
-          err.message;
-      } finally {
-        aiBtn.disabled = false;
-        aiBtn.textContent = "AI tư vấn như nhân viên";
-      }
-    }
   </script>
+
 </body>
 </html>
