@@ -5,289 +5,186 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Gia Minh Sticker - Báo giá tem nhanh</title>
-  <meta name="description" content="Báo giá tem nhãn decal nhanh - upload mẫu cũ, tư vấn chất liệu, gợi ý kích thước." />
-
-  <meta property="og:title" content="Gia Minh Sticker - Báo giá tem nhanh" />
-  <meta property="og:description" content="Upload mẫu tem cũ - tư vấn decal giấy / nhựa - báo giá nhanh." />
-  <meta property="og:image" content="logo.png" />
-  <meta property="og:type" content="website" />
-
-  <link rel="icon" type="image/png" href="logo.png" />
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      background: #f6f7fb;
-      color: #111827;
-      padding: 16px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef7f0;
+      color: #1f2937;
     }
 
     .wrap {
-      max-width: 680px;
+      max-width: 560px;
       margin: 0 auto;
+      padding: 16px;
     }
 
     .card {
       background: #ffffff;
-      border-radius: 22px;
-      padding: 22px;
+      border-radius: 18px;
+      padding: 20px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
 
-    .top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 22px;
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      color: #111827;
     }
 
-    .logo {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .brand h2 {
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
-
-    .brand p {
-      color: #6b7280;
-      font-size: 15px;
-      line-height: 1.4;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: 32px;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
+    .desc {
+      margin: 0 0 8px;
       color: #4b5563;
-      font-size: 17px;
-      line-height: 1.6;
-    }
-
-    .quick {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .quick div {
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 12px;
-      background: #fafafa;
       font-size: 15px;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .upload-mini {
-      border: 1.5px dashed #cbd5e1;
-      background: #f9fafb;
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 16px;
-    }
-
-    .upload-mini label {
-      display: block;
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .upload-mini p {
-      color: #6b7280;
-      font-size: 14px;
-      margin-bottom: 10px;
       line-height: 1.5;
     }
 
-    input[type="file"] {
-      width: 100%;
-      background: #fff;
-      border: 1px solid #d1d5db;
-      border-radius: 12px;
-      padding: 11px;
-      font-size: 15px;
+    .small {
+      font-size: 13px;
+      color: #047857;
+      margin-bottom: 18px;
+      font-weight: 600;
     }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 6px;
+      font-size: 16px;
     }
 
-    input,
     select,
     textarea {
       width: 100%;
+      padding: 13px 14px;
       border: 1px solid #d1d5db;
-      border-radius: 14px;
-      padding: 15px;
+      border-radius: 12px;
       font-size: 16px;
-      margin-bottom: 12px;
-      outline: none;
       background: #fff;
+      color: #111827;
     }
 
     textarea {
-      min-height: 95px;
+      min-height: 76px;
       resize: vertical;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
     }
 
     button {
       width: 100%;
+      padding: 16px;
       border: none;
-      border-radius: 16px;
-      padding: 17px;
+      border-radius: 14px;
+      background: #0f8b2d;
+      color: white;
       font-size: 18px;
-      font-weight: 800;
+      font-weight: bold;
       cursor: pointer;
-      margin-bottom: 12px;
+      margin-top: 16px;
     }
 
-    .btn-main {
-      background: #111111;
-      color: #ffffff;
+    button.secondary {
+      background: #087f2b;
+      margin-top: 16px;
     }
 
-    .btn-zalo {
-      background: #0068ff;
-      color: #ffffff;
-    }
-
-    .btn-messenger {
-      background: #0084ff;
-      color: #ffffff;
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
 
     .result {
       display: none;
-      margin-top: 10px;
-      background: #fff7e6;
-      border: 1px solid #f3d28b;
+      margin-top: 18px;
+      background: #f8fff9;
+      border: 1px solid #b7e4c7;
       border-radius: 16px;
       padding: 16px;
-      font-size: 16px;
-      line-height: 1.7;
     }
 
-    .footer {
-      text-align: center;
-      color: #6b7280;
-      font-size: 14px;
-      margin-top: 20px;
-      line-height: 1.6;
-    }
-
-    .float {
-      position: fixed;
-      right: 15px;
-      bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 999;
-    }
-
-    .float a {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 800;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    .result-title {
+      color: #374151;
+      margin-bottom: 6px;
       font-size: 15px;
     }
 
-    .float .zalo {
-      background: #0068ff;
+    .price {
+      font-size: 34px;
+      font-weight: bold;
+      color: #087f2b;
+      margin-bottom: 10px;
     }
 
-    .float .mes {
-      background: #0084ff;
+    .note {
+      font-size: 16px;
+      line-height: 1.55;
+      color: #374151;
     }
 
-    @media (max-width: 520px) {
-      body {
-        padding: 10px;
+    .ai-box {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      background: #fff8e8;
+      border: 1px solid #f3cf80;
+      border-radius: 14px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .cta a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .zalo {
+      background: #0b84ff;
+    }
+
+    .fb {
+      background: #1877f2;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 12px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 12px;
       }
 
       .card {
-        padding: 16px;
-        border-radius: 18px;
+        padding: 18px;
+        border-radius: 16px;
       }
 
-      .logo {
-        width: 50px;
-        height: 50px;
+      h1 {
+        font-size: 24px;
       }
 
-      .brand h2 {
-        font-size: 20px;
-      }
-
-      .brand p {
-        font-size: 14px;
-      }
-
-      .hero h1 {
-        font-size: 26px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .quick {
-        grid-template-columns: 1fr;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      button {
-        font-size: 17px;
-        padding: 16px;
-      }
-
-      .float a {
-        width: 55px;
-        height: 55px;
-        font-size: 14px;
+      .price {
+        font-size: 30px;
       }
     }
   </style>
@@ -296,137 +193,305 @@
 <body>
   <div class="wrap">
     <div class="card">
+      <h1>Gia Minh Sticker</h1>
+      <p class="desc">Báo giá tem nhanh • AI tư vấn như nhân viên shop</p>
+      <div class="small">✔ Có nhận số lượng ít • ✔ Ship toàn quốc</div>
 
-      <div class="top">
-        <img src="logo.png" class="logo" alt="Gia Minh Sticker" />
-        <div class="brand">
-          <h2>Gia Minh Sticker</h2>
-          <p>Báo giá tem nhanh - dễ hiểu - tiết kiệm</p>
-        </div>
-      </div>
-
-      <div class="hero">
-        <h1>🚀 AI Báo Giá Tem Nhanh</h1>
-        <p>
-          Nhập kích thước, số lượng hoặc upload mẫu tem cũ.<br>
-          Bên mình tư vấn decal phù hợp và báo giá nhanh.
-        </p>
-      </div>
-
-      <div class="quick">
-        <div>📸 Upload mẫu cũ</div>
-        <div>🤖 Tư vấn chất liệu</div>
-        <div>📏 Gợi ý kích thước</div>
-        <div>💬 Gửi file qua Zalo</div>
-      </div>
-
-      <div class="upload-mini">
-        <label>📎 Upload hình tem cũ nếu có</label>
-        <p>Khách có thể gửi ảnh tem cũ, mẫu thiết kế hoặc hình sản phẩm cần dán tem.</p>
-        <input type="file" id="fileUpload" accept="image/*,.pdf,.ai,.cdr,.psd" />
-      </div>
-
-      <div class="form-row">
-        <input type="text" id="size" placeholder="Kích thước, ví dụ: 3x3, 4x6, 5x5..." />
-        <input type="text" id="quantity" placeholder="Số lượng, ví dụ: 500, 1000..." />
-      </div>
-
-      <select id="material">
-        <option value="">Chọn chất liệu nếu biết</option>
-        <option value="decal giấy">Decal giấy</option>
-        <option value="decal nhựa">Decal nhựa</option>
-        <option value="decal trong">Decal trong</option>
-        <option value="chưa biết">Chưa biết, cần tư vấn</option>
+      <label>Kích thước tem</label>
+      <select id="size">
+        <option value="3x3">3x3cm</option>
+        <option value="4x4">4x4cm</option>
+        <option value="5x5">5x5cm</option>
+        <option value="6x6">6x6cm</option>
+        <option value="3x6">3x6cm</option>
+        <option value="7x7">7x7cm</option>
+        <option value="8x8">8x8cm</option>
+        <option value="9x9">9x9cm</option>
+        <option value="10x10">10x10cm</option>
       </select>
 
-      <textarea id="note" placeholder="Mô tả thêm: tem trà sữa, dán ly lạnh, chống nước, tem sản phẩm, cần cán màng..."></textarea>
+      <label>Số lượng tem</label>
+      <select id="qty">
+        <option value="500">500 tem</option>
+        <option value="1000">1000 tem</option>
+        <option value="2000">2000 tem</option>
+      </select>
 
-      <button class="btn-main" onclick="baoGia()">🚀 AI TƯ VẤN & BÁO GIÁ</button>
+      <label>Chất liệu</label>
+      <select id="material">
+        <option value="paper">Decal giấy trắng / giấy kraft</option>
+        <option value="plastic">Decal nhựa kháng nước</option>
+        <option value="clear">Decal trong suốt cán màng - kháng nước</option>
+      </select>
 
-      <a href="https://zalo.me/0937650121" target="_blank">
-        <button class="btn-zalo">💬 GỬI FILE QUA ZALO</button>
-      </a>
+      <label>Gia công</label>
+      <select id="finish">
+        <option value="none">Không cán màng</option>
+        <option value="laminated">Có cán màng</option>
+      </select>
 
-      <a href="https://m.me/ingiaminh.sticker" target="_blank">
-        <button class="btn-messenger">📩 NHẮN MESSENGER</button>
-      </a>
+      <label>Ghi chú thêm</label>
+      <textarea id="memo" placeholder="Ví dụ: tem tròn, dán ly trà sữa, cần gấp..."></textarea>
 
-      <div class="result" id="result"></div>
+      <button onclick="quote()">Báo giá tham khảo</button>
 
-      <div class="footer">
-        🌐 gia-minh-ai-bao-gia.onrender.com<br>
-        ☎ 0937 650 121
+      <div id="result" class="result">
+        <div class="result-title">Giá tham khảo:</div>
+        <div id="price" class="price"></div>
+        <div id="advice" class="note"></div>
+
+        <button id="aiBtn" class="secondary" onclick="askAI()">AI tư vấn như nhân viên</button>
+        <div id="aiBox" class="ai-box"></div>
+
+        <div class="cta">
+          <a id="zaloLink" class="zalo" target="_blank">Gửi Zalo</a>
+          <a id="sendFile" class="zalo" target="_blank">📁 Gửi file qua Zalo</a>
+          <a id="fbLink" class="fb" target="_blank">Nhắn Facebook</a>
+        </div>
+
+        <div class="disclaimer">
+          Giá chỉ mang tính tham khảo. Giá thực tế có thể thay đổi theo file in, độ phủ màu, cán màng, bế tem và tiến độ cần lấy.
+        </div>
       </div>
-
     </div>
   </div>
 
-  <div class="float">
-    <a class="zalo" href="https://zalo.me/0937650121" target="_blank">Zalo</a>
-    <a class="mes" href="https://m.me/ingiaminh.sticker" target="_blank">M</a>
-  </div>
-
   <script>
-    function baoGia() {
-      const size = document.getElementById("size").value.trim();
-      const quantity = document.getElementById("quantity").value.trim();
-      const material = document.getElementById("material").value;
-      const note = document.getElementById("note").value.trim().toLowerCase();
+    const ZALO_PHONE = "0937650121";
+    const FACEBOOK_LINK = "https://www.facebook.com/ingiaminh.sticker";
 
-      let result = "<b>🎯 Gợi ý cho bạn:</b><br><br>";
+    const priceTable = {
+      paper: {
+        "3x3": {
+          none: { 500: 120000, 1000: 156000, 2000: 228000 },
+          laminated: { 500: 131000, 1000: 175000, 2000: 263000 }
+        },
+        "4x4": {
+          none: { 500: 156000, 1000: 228000, 2000: 390000 },
+          laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
+        },
+        "5x5": {
+          none: { 500: 185000, 1000: 300000, 2000: 560000 },
+          laminated: { 500: 211000, 1000: 353000, 2000: 662000 }
+        },
+        "6x6": {
+          none: { 500: 228000, 1000: 390000, 2000: 742000 },
+          laminated: { 500: 263000, 1000: 462000, 2000: 881000 }
+        },
+        "3x6": {
+          none: { 500: 156000, 1000: 228000, 2000: 390000 },
+          laminated: { 500: 175000, 1000: 264000, 2000: 462000 }
+        },
+        "7x7": {
+          none: { 500: 301000, 1000: 560000, 2000: 1057000 },
+          laminated: { 500: 353000, 1000: 663000, 2000: 1258000 }
+        },
+        "8x8": {
+          none: { 500: 443000, 1000: 871000, 2000: 1687000 },
+          laminated: { 500: 524000, 1000: 1033000, 2000: 2006000 }
+        },
+        "9x9": {
+          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
+          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
+        },
+        "10x10": {
+          none: { 500: 560000, 1000: 1057000, 2000: 2078000 },
+          laminated: { 500: 663000, 1000: 1258000, 2000: 2479000 }
+        }
+      },
 
-      if (material && material !== "chưa biết") {
-        result += "✔ Chất liệu bạn chọn: <b>" + material + "</b><br>";
-      } else {
-        if (
-          note.includes("ly lạnh") ||
-          note.includes("chống nước") ||
-          note.includes("tủ lạnh") ||
-          note.includes("ngoài trời")
-        ) {
-          result += "✔ Nên dùng <b>decal nhựa</b> để chống nước tốt hơn.<br>";
-          result += "✔ Có thể cán màng để tem bền và đẹp hơn.<br>";
-        } else if (
-          note.includes("trong") ||
-          note.includes("chai trong") ||
-          note.includes("lọ trong")
-        ) {
-          result += "✔ Có thể dùng <b>decal trong</b> nếu muốn thấy nền sản phẩm bên dưới.<br>";
-        } else {
-          result += "✔ Có thể dùng <b>decal giấy</b> để tiết kiệm chi phí.<br>";
-          result += "✔ Nếu cần chống nước thì nên đổi sang decal nhựa.<br>";
+      plastic: {
+        "3x3": {
+          none: { 500: 159000, 1000: 208000, 2000: 303000 },
+          laminated: { 500: 175000, 1000: 233000, 2000: 350000 }
+        },
+        "4x4": {
+          none: { 500: 208000, 1000: 303000, 2000: 520000 },
+          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
+        },
+        "5x5": {
+          none: { 500: 246000, 1000: 400000, 2000: 745000 },
+          laminated: { 500: 280000, 1000: 470000, 2000: 881000 }
+        },
+        "6x6": {
+          none: { 500: 303000, 1000: 520000, 2000: 990000 },
+          laminated: { 500: 350000, 1000: 615000, 2000: 1175000 }
+        },
+        "3x6": {
+          none: { 500: 208000, 1000: 303000, 2000: 520000 },
+          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
+        },
+        "7x7": {
+          none: { 500: 400000, 1000: 745000, 2000: 1406000 },
+          laminated: { 500: 470000, 1000: 881000, 2000: 1673000 }
+        },
+        "8x8": {
+          none: { 500: 589000, 1000: 1158000, 2000: 2243000 },
+          laminated: { 500: 697000, 1000: 1374000, 2000: 2668000 }
+        },
+        "9x9": {
+          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
+          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
+        },
+        "10x10": {
+          none: { 500: 745000, 1000: 1406000, 2000: 2764000 },
+          laminated: { 500: 881000, 1000: 1673000, 2000: 3297000 }
+        }
+      },
+
+      clear: {
+        "3x3": {
+          none: { 500: 175000, 1000: 233000, 2000: 350000 },
+          laminated: { 500: 175000, 1000: 233000, 2000: 350000 }
+        },
+        "4x4": {
+          none: { 500: 233000, 1000: 350000, 2000: 615000 },
+          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
+        },
+        "5x5": {
+          none: { 500: 280000, 1000: 470000, 2000: 881000 },
+          laminated: { 500: 280000, 1000: 470000, 2000: 881000 }
+        },
+        "6x6": {
+          none: { 500: 350000, 1000: 615000, 2000: 1175000 },
+          laminated: { 500: 350000, 1000: 615000, 2000: 1175000 }
+        },
+        "3x6": {
+          none: { 500: 233000, 1000: 350000, 2000: 615000 },
+          laminated: { 500: 233000, 1000: 350000, 2000: 615000 }
+        },
+        "7x7": {
+          none: { 500: 477000, 1000: 894000, 2000: 1698000 },
+          laminated: { 500: 477000, 1000: 894000, 2000: 1698000 }
+        },
+        "8x8": {
+          none: { 500: 707000, 1000: 1394000, 2000: 2709000 },
+          laminated: { 500: 707000, 1000: 1394000, 2000: 2709000 }
+        },
+        "9x9": {
+          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
+          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
+        },
+        "10x10": {
+          none: { 500: 894000, 1000: 1698000, 2000: 3347000 },
+          laminated: { 500: 894000, 1000: 1698000, 2000: 3347000 }
         }
       }
+    };
 
-      if (size) {
-        result += "✔ Kích thước: <b>" + size + "</b><br>";
-      } else {
-        result += "✔ Kích thước phổ biến: <b>3x3, 4x6, 5x5cm</b>.<br>";
+    let lastQuote = null;
+
+    function money(value) {
+      return Number(value).toLocaleString("vi-VN") + "đ";
+    }
+
+    function getText(id) {
+      const el = document.getElementById(id);
+      return el.options[el.selectedIndex].text;
+    }
+
+    function quote() {
+      const size = document.getElementById("size").value;
+      const qty = document.getElementById("qty").value;
+      const material = document.getElementById("material").value;
+      let finish = document.getElementById("finish").value;
+      const memo = document.getElementById("memo").value.trim();
+
+      if (material === "clear") {
+        finish = "laminated";
+        document.getElementById("finish").value = "laminated";
       }
 
-      if (quantity) {
-        result += "✔ Số lượng: <b>" + quantity + " tem</b><br>";
-      } else {
-        result += "✔ Nên nhập số lượng để báo giá sát hơn.<br>";
+      const price = priceTable?.[material]?.[size]?.[finish]?.[qty];
+
+      if (!price) {
+        alert("Chưa có giá cho lựa chọn này.");
+        return;
       }
 
-      result += "<br>📌 Để báo giá chính xác hơn, bạn gửi thêm file hoặc hình mẫu qua Zalo nhé.";
+      const materialText = getText("material");
+      const finishText = getText("finish");
 
-      const box = document.getElementById("result");
-      box.style.display = "block";
-      box.innerHTML = result;
+      let advice = `Dạ tem ${size}cm, số lượng ${qty} tem, chất liệu ${materialText}, ${finishText.toLowerCase()}: giá tham khảo ${money(price)} nha 😊`;
 
-      const history = {
-        size: size,
-        quantity: quantity,
-        material: material,
-        note: note,
-        time: new Date().toLocaleString()
+      if (material === "paper") {
+        advice += `<br><br>Decal giấy/kraft phù hợp nếu anh/chị muốn giá tốt, dùng cho sản phẩm khô hoặc không cần chống nước nhiều.`;
+      }
+
+      if (material === "plastic") {
+        advice += `<br><br>Decal nhựa phù hợp hơn nếu tem dán ly lạnh, chai/lọ hoặc cần kháng nước tốt.`;
+      }
+
+      if (material === "clear") {
+        advice += `<br><br>Decal trong suốt bắt buộc cán màng, nhìn sạch và hiện đại, hợp chai/lọ có nền sản phẩm đẹp.`;
+      }
+
+      advice += `<br><br>Anh/chị gửi mẫu/logo giúp em để báo sát hơn và tư vấn màu dễ in đẹp nha 👍`;
+
+      document.getElementById("price").innerHTML = money(price);
+      document.getElementById("advice").innerHTML = advice;
+      document.getElementById("result").style.display = "block";
+      document.getElementById("aiBox").style.display = "none";
+      document.getElementById("aiBox").textContent = "";
+
+      lastQuote = {
+        size,
+        qty,
+        material,
+        materialText,
+        finish,
+        finishText,
+        memo,
+        price
       };
 
-      let old = JSON.parse(localStorage.getItem("giaMinhBaoGia")) || [];
-      old.push(history);
-      localStorage.setItem("giaMinhBaoGia", JSON.stringify(old));
+      const msg =
+        `Dạ em muốn báo giá tem ${size}cm, ${qty} tem, ${materialText}, ${finishText}.` +
+        (memo ? ` Ghi chú: ${memo}` : "");
+
+      document.getElementById("zaloLink").href =
+        `https://zalo.me/${ZALO_PHONE}?text=` + encodeURIComponent(msg);
+
+      document.getElementById("sendFile").href =
+        `https://zalo.me/${ZALO_PHONE}`;
+
+      document.getElementById("fbLink").href = FACEBOOK_LINK;
+    }
+
+    async function askAI() {
+      if (!lastQuote) quote();
+      if (!lastQuote) return;
+
+      const aiBtn = document.getElementById("aiBtn");
+      const aiBox = document.getElementById("aiBox");
+
+      aiBtn.disabled = true;
+      aiBtn.textContent = "AI đang tư vấn...";
+      aiBox.style.display = "block";
+      aiBox.textContent = "Đang tạo lời tư vấn...";
+
+      try {
+        const res = await fetch("/api/advice", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ quote: lastQuote })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Có lỗi khi gọi AI");
+        }
+
+        aiBox.textContent = data.advice;
+      } catch (err) {
+        aiBox.textContent =
+          "AI chưa phản hồi được. Anh/chị bấm Zalo/Facebook gửi mẫu giúp em để bên em tư vấn trực tiếp nha 👍\n\nLỗi: " +
+          err.message;
+      } finally {
+        aiBtn.disabled = false;
+        aiBtn.textContent = "AI tư vấn như nhân viên";
+      }
     }
   </script>
 </body>
